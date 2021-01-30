@@ -89,25 +89,45 @@ public class ShipSystemPanelComponentEntry : MonoBehaviour
         {
             // Give the astronaut the order to uninstall the component from its old system
             // And install the component to the other system upon completion.
-            var uninstallJob = new UninstallComponentJob(_parentPanel.ShipSystem, Component);
-            if (uninstallJob.CheckPrerequisite())
+            if (_parentPanel.ShipSystem is Astronaut)
             {
                 var installJob = new InstallComponentJob(otherPanel.ShipSystem, Component);
-                if (installJob.CheckPrerequisite())
+                if (installJob.CheckInstantiationPrerequisite())
                 {
-                    // Both jobs are possible! Let's queue them both.
-                    Job.QueueJob(uninstallJob);
                     Job.QueueJob(installJob);
-                    Debug.Log($"ShipSystemPanelComponentEntry: Started moving {Component.Name} to {otherPanel.ShipSystem.Name}");
-                    Destroy(gameObject);
+                    Debug.Log($"ShipSystemPanelComponentEntry: Started installing {Component.Name} to {otherPanel.ShipSystem.Name}");
+                    //Destroy(gameObject);
                     return true;
                 }
             }
+            else
+            {
+                var uninstallJob = new UninstallComponentJob(_parentPanel.ShipSystem, Component);
+                if (uninstallJob.CheckInstantiationPrerequisite())
+                {
+                    if (otherPanel.ShipSystem is Astronaut)
+                    {
+                        Job.QueueJob(uninstallJob);
+                        Debug.Log($"ShipSystemPanelComponentEntry: Started uninstalling {Component.Name} from {_parentPanel.ShipSystem.Name}");
+                        return true;
+                    }
+                    else
+                    {
+                        var installJob = new InstallComponentJob(otherPanel.ShipSystem, Component);
+                        if (installJob.CheckInstantiationPrerequisite())
+                        {
+                            // Both jobs are possible! Let's queue them both.
+                            Job.QueueJob(uninstallJob);
+                            Job.QueueJob(installJob);
+                            Debug.Log($"ShipSystemPanelComponentEntry: Started moving {Component.Name} to {otherPanel.ShipSystem.Name}");
+                            //Destroy(gameObject);
+                            return true;
+                        }
+                    }
+                }
+            }
         }
-        else
-        {
-            Debug.Log($"ShipSystemPanelComponentEntry: Failed to set {Component.Name}'s parent to {otherPanel.ShipSystem.Name}");
-        }
+        Debug.Log($"ShipSystemPanelComponentEntry: Failed to set {Component.Name}'s parent to {otherPanel.ShipSystem.Name}");
         return false;
     }
 

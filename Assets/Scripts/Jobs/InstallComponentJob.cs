@@ -17,9 +17,9 @@ public class InstallComponentJob : Job
         _requiredWork = 20.0f;
     }
 
-    public override bool CheckPrerequisite()
+    public override bool CheckInstantiationPrerequisite()
     {
-        return System != null && Component != null && System.CanAddComponent(Component);
+        return System != null && !(System is Astronaut) && Component != null && System.CanAddComponent(Component);
     }
 
     public override void ExecuteJobPostcondition(Astronaut astronaut)
@@ -35,5 +35,10 @@ public class InstallComponentJob : Job
     public override void ExecuteJobPerformanceEffect(Astronaut astronaut, float astronautEfficiency, float workDone)
     {
         // Don't need anything here, methinks.
+    }
+
+    public override bool CheckPerformJobPrerequisite(Astronaut astronaut, float astronautEfficiency)
+    {
+        return CheckInstantiationPrerequisite() && astronaut.HasComponent(Component);
     }
 }
