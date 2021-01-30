@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Screws
   _sprite: {fileID: 21300000, guid: f407ce405ddd4284f940c9740c7c3acd, type: 3}
+  _uninstallTimeMultiplier: 0.2
+  _installTimeMultiplier: 0.43

@@ -8,6 +8,8 @@ public class ShipSystemComponent
     public ShipSystemComponentData Data { get; private set; }
     public string Name { get => Data.Name; }
     public Sprite Sprite { get => Data.Sprite; }
+    public float UninstallTimeMultiplier { get => Data.UninstallTimeMultiplier; }
+    public float InstallTimeMultiplier { get => Data.InstallTimeMultiplier; }
 
     public ShipSystemComponent(ShipSystemComponentData data)
     {

@@ -11,13 +11,34 @@ public abstract class ShipSystem : MonoBehaviour
     [SerializeField] private string _name = "System Name";
     [Tooltip("The system's compatible components. The system starts with one of each, and is fully operational with all these components.")]
     [SerializeField] private ShipSystemComponentData[] _compatibleComponents = null;
+    [Tooltip("If true, the compatible components list only acts as a starting components list, and all components can be added multiple times.")]
+    [SerializeField] private bool _hasUnlimitedComponentCapacity = false;
+    [SerializeField] private Vector3 _workPosition = Vector3.zero;
+    [Tooltip("Mulitplies by the base time to uninstall components and the component's multiplier.")]
+    [Min(0.00001f)]
+    [SerializeField] private float _uninstallTimeMultiplier = 1.0f;
+    [Tooltip("Mulitplies by the base time to install components and the component's multiplier.")]
+    [Min(0.00001f)]
+    [SerializeField] private float _installTimeMultiplier = 1.0f;
 
     private List<ShipSystemComponent> _components = null;
     private GameObject _panel = null;
 
     public string Name { get => _name; }
+    public Vector3 WorkPosition
+    {
+        get => _workPosition;
+        protected set
+        {
+            _workPosition = value;
+            OnWorkPositionChanged?.Invoke(_workPosition);
+        }
+    }
     public Action<ShipSystemComponent> OnComponentAdded { get; set; } = null;
     public Action<ShipSystemComponent> OnComponentRemoved { get; set; } = null;
+    public Action<Vector3> OnWorkPositionChanged { get; set; } = null;
+    public float UninstallTimeMultiplier { get => _uninstallTimeMultiplier; }
+    public float InstallTimeMultiplier { get => _installTimeMultiplier; }
 
     public abstract void UpdateAccordingToWorkingComponentCount(int count);
 
@@ -29,16 +50,12 @@ public abstract class ShipSystem : MonoBehaviour
     private void Update()
     {
         UpdateAccordingToWorkingComponentCount(GetWorkingComponentCount());
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            if (_components.Count > 0)
-            {
-                RemoveSystemComponent(_components[0]);
-            }
-        }
     }
 
+    /// <summary>
+    /// Checks if the system has all required components.
+    /// </summary>
+    /// <returns>True if it do have all required components, yes.</returns>
     public bool HasAllRequiredComponents()
     {
         foreach (var requiredComponent in _compatibleComponents)
@@ -71,20 +88,11 @@ public abstract class ShipSystem : MonoBehaviour
 
     public void AddSystemComponent(ShipSystemComponent component)
     {
-        if (HasComponentOfType(component.Data))
+        if (CanAddComponent(component))
         {
-            // We can add this
-            Debug.Log($"Component {component.Name} fits {Name}");
-            if (!_components.Contains(component))
-            {
-                _components.Add(component);
-                Debug.Log($"{component.Name} was added to {Name}!");
-                OnComponentAdded?.Invoke(component);
-            }
-            else
-            {
-                Debug.Log($"However, {Name} already has a {component.Name}. Put it somewehere else!");
-            }
+            _components.Add(component);
+            Debug.Log($"{component.Name} was added to {Name}!");
+            OnComponentAdded?.Invoke(component);
         }
         else
         {
@@ -140,5 +148,21 @@ public abstract class ShipSystem : MonoBehaviour
     public bool HasComponentOfType(ShipSystemComponentData data)
     {
         return _components.Where(c => c.Data == data).Any();
+    }
+
+    public bool HasComponent(ShipSystemComponent component)
+    {
+        return _components.Contains(component);
+    }
+
+    public bool CanAddComponent(ShipSystemComponent component)
+    {
+        return _hasUnlimitedComponentCapacity ||
+               !HasComponentOfType(component.Data) && _compatibleComponents.Contains(component.Data);
+    }
+
+    public List<ShipSystemComponentData> GetRequiredComponents()
+    {
+        return _compatibleComponents.ToList();
     }
 }

@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class ShipSystemPanelComponentEntry : MonoBehaviour
@@ -30,7 +29,7 @@ public class ShipSystemPanelComponentEntry : MonoBehaviour
         _componentImage.sprite = Component.Sprite;
         _componentNameText.text = Component.Name;
         _componentConditionText.text = $"Condition: {Component.Condition}";
-        Debug.Log($"ShipSystemPanelComponentEntry for component {Component.Name} initialised.");
+        //Debug.Log($"ShipSystemPanelComponentEntry for component {Component.Name} initialised.");
     }
 
     private void Update()
@@ -66,16 +65,40 @@ public class ShipSystemPanelComponentEntry : MonoBehaviour
             var otherPanel = GetOtherShipSystemPanelUnderMouse();
             if (otherPanel != null)
             {
-                transform.SetParent(otherPanel.transform);
-                Debug.Log($"ShipSystemPanelComponentEntry: Set {Component.Name}'s parent to {otherPanel.ShipSystem.Name}");
+                EnqueueComponentMoveJobs(otherPanel);
             }
-            else
-            {
-                // Go back to original parent if we're not over another system panel
-                transform.SetParent(_parentPanel.transform);
-            }
+            transform.SetParent(_parentPanel.transform);
         }
         _previousMousePosition = Input.mousePosition;
+    }
+
+    private bool EnqueueComponentMoveJobs(ShipSystemPanel otherPanel)
+    {
+        // Try to make the system on the other panel the system of the component
+        if (otherPanel.ShipSystem.CanAddComponent(Component))
+        {
+            // Give the astronaut the order to uninstall the component from its old system
+            // And install the component to the other system upon completion.
+            var uninstallJob = new UninstallComponentJob(_parentPanel.ShipSystem, Component);
+            if (uninstallJob.CheckPrerequisite())
+            {
+                var installJob = new InstallComponentJob(otherPanel.ShipSystem, Component);
+                if (installJob.CheckPrerequisite())
+                {
+                    // Both jobs are possible! Let's queue them both.
+                    Job.QueueJob(uninstallJob);
+                    Job.QueueJob(installJob);
+                    Debug.Log($"ShipSystemPanelComponentEntry: Started moving {Component.Name} to {otherPanel.ShipSystem.Name}");
+                    Destroy(gameObject);
+                    return true;
+                }
+            }
+        }
+        else
+        {
+            Debug.Log($"ShipSystemPanelComponentEntry: Failed to set {Component.Name}'s parent to {otherPanel.ShipSystem.Name}");
+        }
+        return false;
     }
 
     private bool IsMouseInRect(RectTransform rt)
