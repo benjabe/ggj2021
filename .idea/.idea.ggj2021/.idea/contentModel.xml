@@ -19,6 +19,7 @@
           <e p="ExtensionMethods" t="Include">
             <e p="ExtensionMethods.cs" t="Include" />
           </e>
+          <e p="FastForward.cs" t="Include" />
           <e p="Jobs" t="Include">
             <e p="InstallComponentJob.cs" t="Include" />
             <e p="Job.cs" t="Include" />
@@ -60,6 +61,8 @@
             <e p="DraggableUIElement.cs" t="Include" />
             <e p="JobQueueEntry.cs" t="Include" />
             <e p="JobQueuePanel.cs" t="Include" />
+            <e p="MissionCard.cs" t="Include" />
+            <e p="MissionPanel.cs" t="Include" />
             <e p="ProgressBar.cs" t="Include" />
             <e p="ShipSystemPanel.cs" t="Include" />
             <e p="ShipSystemPanelComponentEntry.cs" t="Include" />
