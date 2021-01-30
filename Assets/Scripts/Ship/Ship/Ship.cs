@@ -7,7 +7,8 @@ public class Ship : MonoBehaviour
     private static List<ShipStat> _stats = new List<ShipStat>()
     {
         new O2Stat(),
-        new AsteroidDeflectionStrengthStat()
+        new AsteroidDeflectionStrengthStat(),
+        new HO2Stat()
     };
 
     private void Update()
