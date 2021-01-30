@@ -42,7 +42,7 @@ public class ShipSystemComponent
     public bool Repair(float repairAmt)
     {
         Condition += repairAmt;
-        if (Condition > 1.0f)
+        if (CurrentMode == Mode.Broken && Condition > 1.0f)
         {
             CurrentMode = Mode.Working;
             Debug.Log($"{Name} fixed!");

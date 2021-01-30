@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class JobQueuePanel : MonoBehaviour
@@ -10,6 +11,7 @@ public class JobQueuePanel : MonoBehaviour
     private void Awake()
     {
         Job.OnJobCompleted += OnJobCompleted;
+        Job.OnJobCancelled += OnJobCancelled;
         Job.OnJobQueued += OnJobQueued;
     }
 
@@ -20,6 +22,13 @@ public class JobQueuePanel : MonoBehaviour
     }
 
     private void OnJobCompleted(Job job)
+    {
+        // Remove an entry. In the future, maybe store completed jobs? Maybe. Who knows.
+        Destroy(_jobToEntry[job]);
+        _jobToEntry.Remove(job);
+    }
+
+    private void OnJobCancelled(Job job)
     {
         // Remove an entry. In the future, maybe store completed jobs? Maybe. Who knows.
         Destroy(_jobToEntry[job]);

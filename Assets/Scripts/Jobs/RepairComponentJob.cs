@@ -25,7 +25,7 @@ public class RepairComponentJob : Job
 
     public override void ExecuteJobPostcondition(Astronaut astronaut)
     {
-        System.AddSystemComponent(Component);
+        // Nothing, effect is gradual during the job
     }
 
     private void OnSystemWorkPositionChanged(Vector3 position)

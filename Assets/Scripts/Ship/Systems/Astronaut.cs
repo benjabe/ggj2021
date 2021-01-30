@@ -54,6 +54,15 @@ public class Astronaut : ShipSystem
     public override void EndAwake()
     {
         Job.OnJobCompleted += OnJobCompleted;
+        Job.OnJobCancelled += OnJobCancelled;
+    }
+
+    private void OnJobCancelled(Job job)
+    {
+        if (job == _currentJob)
+        {
+            _currentJob = null;
+        }
     }
 
     private void OnJobCompleted(Job job)

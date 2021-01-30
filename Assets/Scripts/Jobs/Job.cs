@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public abstract class Job
@@ -8,6 +9,7 @@ public abstract class Job
 
     public static Action<Job> OnJobQueued { get; set; } = null;
     public static Action<Job> OnJobCompleted { get; set; } = null;
+    public static Action<Job> OnJobCancelled { get; set; } = null;
 
     /// <summary>
     /// The amount of work (baseline time in seconds) required for the job to be completed.
@@ -29,7 +31,6 @@ public abstract class Job
     public float RequiredWork { get => _requiredWork; }
     public float CurrentWork { get => _currentWork; }
     public Vector3 WorkPosition { get => _workPosition; }
-
 
     /// <summary>
     /// The name of the job.
@@ -109,12 +110,14 @@ public abstract class Job
     {
         return _jobQueue.Dequeue();
     }
+
     /// <summary>
-    /// Claims the next job for an astronaut. Dequeues the job.
+    /// Canceld a job.
     /// </summary>
-    /// <returns>The dequeued job.</returns>
-    public static Job ClaimJob(Astronaut astronaut)
+    /// <param name="job">The job to cancel.</param>
+    public static void CancelJob(Job job)
     {
-        return _jobQueue.Dequeue();
+        _jobQueue = new Queue<Job>(_jobQueue.Where(j => j != job));
+        OnJobCancelled?.Invoke(job);
     }
 }
