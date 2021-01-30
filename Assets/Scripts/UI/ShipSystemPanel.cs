@@ -1,11 +1,15 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShipSystemPanel : MonoBehaviour
 {
     public static List<ShipSystemPanel> ShipSystemPanels { get; private set; } = new List<ShipSystemPanel>();
 
     [SerializeField] private GameObject _shipSystemPanelComponentEntryPrefab = null;
+    [SerializeField] private Text _systemNameText = null;
+    [SerializeField] private Text _requiredComponentsText = null;
+    [SerializeField] private Button _closeButton = null;
 
     private List<GameObject> _entries = new List<GameObject>();
 
@@ -16,10 +20,26 @@ public class ShipSystemPanel : MonoBehaviour
     {
         ShipSystemPanels.Add(this);
         RectTransform = GetComponent<RectTransform>();
+        _closeButton.onClick.AddListener(() => Destroy(gameObject));
     }
 
     public void Start()
     {
+        _systemNameText.text = ShipSystem.Name;
+        var reqCompText = "Required Components:";
+        var reqComponents = ShipSystem.GetRequiredComponents();
+        foreach (var component in reqComponents)
+        {
+            reqCompText += "\n- " + component.Name;
+        }
+        if (reqComponents.Count > 0)
+        {
+            _requiredComponentsText.text = reqCompText;
+        }
+        else
+        {
+            Destroy(_requiredComponentsText);
+        }
         ShipSystem.OnComponentAdded += OnComponentAdded;
         ShipSystem.OnComponentRemoved += OnComponentRemoved;
         UpdateComponentEntries();
