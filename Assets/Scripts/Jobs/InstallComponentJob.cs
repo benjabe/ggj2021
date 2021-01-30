@@ -31,4 +31,9 @@ public class InstallComponentJob : Job
     {
         _workPosition = position;
     }
+
+    public override void ExecuteJobPerformanceEffect(Astronaut astronaut, float astronautEfficiency, float workDone)
+    {
+        // Don't need anything here, methinks.
+    }
 }

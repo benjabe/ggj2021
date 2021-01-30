@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public abstract class Job
@@ -8,6 +9,7 @@ public abstract class Job
 
     public static Action<Job> OnJobQueued { get; set; } = null;
     public static Action<Job> OnJobCompleted { get; set; } = null;
+    public static Action<Job> OnJobCancelled { get; set; } = null;
 
     /// <summary>
     /// The amount of work (baseline time in seconds) required for the job to be completed.
@@ -30,7 +32,6 @@ public abstract class Job
     public float CurrentWork { get => _currentWork; }
     public Vector3 WorkPosition { get => _workPosition; }
 
-
     /// <summary>
     /// The name of the job.
     /// </summary>
@@ -50,7 +51,9 @@ public abstract class Job
     public bool PerformJob(Astronaut astronaut, float astronautEfficiency)
     {
         if (!CheckPrerequisite()) return false;
-        _currentWork += astronautEfficiency * _workEfficiencyMultiplier * Time.deltaTime;
+        var workDone = astronautEfficiency * _workEfficiencyMultiplier * Time.deltaTime;
+        _currentWork += workDone;
+        ExecuteJobPerformanceEffect(astronaut, astronautEfficiency, workDone);
         if (_currentWork >= _requiredWork)
         {
             CompleteJob(astronaut);
@@ -58,6 +61,14 @@ public abstract class Job
         }
         return false;
     }
+    /// <summary>
+    /// Performs the job.
+    /// </summary>
+    /// <param name="astronaut">The astronaut doing the job.</param>
+    /// <param name="astronautEfficiency">The efficiency at which the astronaut is performing the job. 0 = no progress. 1 = normal progress. Anything more is working faster than normal. Negative numbers are making things worse.</param>
+    /// <returns>Return true if the job was completed.</returns>
+    /// <param name="workDone">The amount of work that was done to cause this effect.</param>
+    public abstract void ExecuteJobPerformanceEffect(Astronaut astronaut, float astronautEfficiency, float workDone);
     /// <summary>
     /// Completes the job and makes whatever the result of the job is supposed to be happen.
     /// </summary>
@@ -99,12 +110,14 @@ public abstract class Job
     {
         return _jobQueue.Dequeue();
     }
+
     /// <summary>
-    /// Claims the next job for an astronaut. Dequeues the job.
+    /// Canceld a job.
     /// </summary>
-    /// <returns>The dequeued job.</returns>
-    public static Job ClaimJob(Astronaut astronaut)
+    /// <param name="job">The job to cancel.</param>
+    public static void CancelJob(Job job)
     {
-        return _jobQueue.Dequeue();
+        _jobQueue = new Queue<Job>(_jobQueue.Where(j => j != job));
+        OnJobCancelled?.Invoke(job);
     }
 }

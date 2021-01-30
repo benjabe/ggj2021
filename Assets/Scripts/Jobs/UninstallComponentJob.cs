@@ -33,4 +33,9 @@ public class UninstallComponentJob : Job
     {
         _workPosition = position;
     }
+
+    public override void ExecuteJobPerformanceEffect(Astronaut astronaut, float astronautEfficiency, float workDone)
+    {
+        // Nada necesito aqui, y'pienso.
+    }
 }
