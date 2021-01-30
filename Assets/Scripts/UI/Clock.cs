@@ -12,11 +12,11 @@ public class Clock : MonoBehaviour
         _text = GetComponentInChildren<Text>();
         _timeSystem = FindObjectOfType<TimeSystem>();
         _timeSystem.OnSecondChanged += OnSecondChanged;
-        _text.text = _timeSystem.Format();
+        _text.text = _timeSystem.ToString();
     }
 
     private void OnSecondChanged()
     {
-        _text.text = _timeSystem.Format();
+        _text.text = _timeSystem.ToString();
     }
 }

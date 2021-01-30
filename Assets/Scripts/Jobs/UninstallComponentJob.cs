@@ -17,7 +17,7 @@ public class UninstallComponentJob : Job
         _requiredWork = 10.0f;
     }
 
-    public override bool CheckPrerequisite()
+    public override bool CheckInstantiationPrerequisite()
     {
         return System != null && Component != null && System.HasComponent(Component);
     }
@@ -26,6 +26,7 @@ public class UninstallComponentJob : Job
     {
         // Remove the component from the system.
         System.RemoveSystemComponent(Component);
+        astronaut.AddSystemComponent(Component);
         System.OnWorkPositionChanged -= OnSystemWorkPositionChanged;
     }
 
@@ -36,6 +37,11 @@ public class UninstallComponentJob : Job
 
     public override void ExecuteJobPerformanceEffect(Astronaut astronaut, float astronautEfficiency, float workDone)
     {
-        // Nada necesito aqui, y'pienso.
+        
+    }
+
+    public override bool CheckPerformJobPrerequisite(Astronaut astronaut, float astronautEfficiency)
+    {
+        return CheckInstantiationPrerequisite();
     }
 }

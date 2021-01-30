@@ -1009,7 +1009,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a183c524383593949b9f89f53296bc65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Instance: {fileID: 0}
 --- !u!1 &1024498763
 GameObject:
   m_ObjectHideFlags: 0
@@ -2092,7 +2091,7 @@ GameObject:
   - component: {fileID: 1767496112}
   - component: {fileID: 1767496114}
   m_Layer: 5
-  m_Name: Text
+  m_Name: MissionCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

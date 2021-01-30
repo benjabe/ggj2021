@@ -18,7 +18,7 @@ public class RepairComponentJob : Job
         _currentWork = Component.Condition;
     }
 
-    public override bool CheckPrerequisite()
+    public override bool CheckInstantiationPrerequisite()
     {
         return System != null && Component != null && System.HasComponentOfType(Component.Data);
     }
@@ -37,5 +37,10 @@ public class RepairComponentJob : Job
     {
         Component.Repair(workDone);
         _currentWork = Component.Condition;
+    }
+
+    public override bool CheckPerformJobPrerequisite(Astronaut astronaut, float astronautEfficiency)
+    {
+        return CheckInstantiationPrerequisite();
     }
 }

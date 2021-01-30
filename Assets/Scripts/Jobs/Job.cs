@@ -38,10 +38,15 @@ public abstract class Job
     public abstract string Name { get; }
 
     /// <summary>
-    /// Checks if the job's prerequisites are met.
+    /// Checks if the job's prerequisites for instantiation are met.
     /// </summary>
     /// <returns>Returns true if the prerequisites for the job to be worked on are present.</returns>
-    public abstract bool CheckPrerequisite();
+    public abstract bool CheckInstantiationPrerequisite();
+    /// <summary>
+    /// Checks if the job's prerequisites for being worked on are met.
+    /// </summary>
+    /// <returns>Returns true if the prerequisites are met, false otherwise.</returns>
+    public abstract bool CheckPerformJobPrerequisite(Astronaut astronaut, float astronautEfficiency);
     /// <summary>
     /// Performs the job.
     /// </summary>
@@ -50,7 +55,11 @@ public abstract class Job
     /// <returns>Return true if the job was completed.</returns>
     public bool PerformJob(Astronaut astronaut, float astronautEfficiency)
     {
-        if (!CheckPrerequisite()) return false;
+        if (!CheckPerformJobPrerequisite(astronaut, astronautEfficiency))
+        {
+            CancelJob(this);
+            return false;
+        }
         var workDone = astronautEfficiency * _workEfficiencyMultiplier * Time.deltaTime;
         _currentWork += workDone;
         ExecuteJobPerformanceEffect(astronaut, astronautEfficiency, workDone);
