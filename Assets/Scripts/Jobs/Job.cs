@@ -50,7 +50,9 @@ public abstract class Job
     public bool PerformJob(Astronaut astronaut, float astronautEfficiency)
     {
         if (!CheckPrerequisite()) return false;
-        _currentWork += astronautEfficiency * _workEfficiencyMultiplier * Time.deltaTime;
+        var workDone = astronautEfficiency * _workEfficiencyMultiplier * Time.deltaTime;
+        _currentWork += workDone;
+        ExecuteJobPerformanceEffect(astronaut, astronautEfficiency, workDone);
         if (_currentWork >= _requiredWork)
         {
             CompleteJob(astronaut);
@@ -58,6 +60,14 @@ public abstract class Job
         }
         return false;
     }
+    /// <summary>
+    /// Performs the job.
+    /// </summary>
+    /// <param name="astronaut">The astronaut doing the job.</param>
+    /// <param name="astronautEfficiency">The efficiency at which the astronaut is performing the job. 0 = no progress. 1 = normal progress. Anything more is working faster than normal. Negative numbers are making things worse.</param>
+    /// <returns>Return true if the job was completed.</returns>
+    /// <param name="workDone">The amount of work that was done to cause this effect.</param>
+    public abstract void ExecuteJobPerformanceEffect(Astronaut astronaut, float astronautEfficiency, float workDone);
     /// <summary>
     /// Completes the job and makes whatever the result of the job is supposed to be happen.
     /// </summary>

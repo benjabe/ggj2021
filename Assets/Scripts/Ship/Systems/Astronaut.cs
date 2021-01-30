@@ -11,33 +11,60 @@ public class Astronaut : ShipSystem
         WorkPosition = transform.position;
         if (_currentJob == null)
         {
-            // No job, try to pop one off the queue
-            if (Job.GetJobQueueCount() > 0)
-            {
-                _currentJob = Job.DequeueJob();
-                Debug.Log("Astronaut got a new job.");
-            }
+            GetNewJob();
         }
         if (_currentJob != null)
         {
-            // Go to where the job is
-            var dist = _currentJob.WorkPosition - transform.position;
-            var dir = dist.normalized;
-            var toMove = dir * Time.deltaTime * _moveSpeed;
-            if (toMove.magnitude >= dist.magnitude)
-                transform.position = _currentJob.WorkPosition;
-            else
-                transform.position += toMove;
-            if (Vector3.Distance(transform.position, _currentJob.WorkPosition) < 0.05f)
+            PerformCurrentJob();
+        }
+    }
+
+    private void PerformCurrentJob()
+    {
+        // Go to where the job is
+        var dist = _currentJob.WorkPosition - transform.position;
+        var dir = dist.normalized;
+        var toMove = dir * Time.deltaTime * _moveSpeed;
+        if (toMove.magnitude >= dist.magnitude)
+            transform.position = _currentJob.WorkPosition;
+        else
+            transform.position += toMove;
+        if (Vector3.Distance(transform.position, _currentJob.WorkPosition) < 0.05f)
+        {
+            // Perform work
+            var jobCompleted = _currentJob.PerformJob(this, 1.0f);
+            if (jobCompleted)
             {
-                // Perform work
-                var jobCompleted = _currentJob.PerformJob(this, 1.0f);
-                if (jobCompleted)
-                {
-                    Debug.Log("Completed job!");
-                    _currentJob = null;
-                }
+                Debug.Log("Completed job!");
+                _currentJob = null;
             }
         }
+    }
+
+    private void GetNewJob()
+    {
+        // No job, try to pop one off the queue
+        if (Job.GetJobQueueCount() > 0)
+        {
+            _currentJob = Job.DequeueJob();
+            Debug.Log("Astronaut got a new job.");
+        }
+    }
+
+    public override void EndAwake()
+    {
+        Job.OnJobCompleted += OnJobCompleted;
+    }
+
+    private void OnJobCompleted(Job job)
+    {
+        if (job == _currentJob)
+        {
+            _currentJob = null;
+        }
+    }
+
+    public override void EndStart()
+    {
     }
 }

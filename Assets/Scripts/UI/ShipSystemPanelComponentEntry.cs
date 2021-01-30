@@ -7,6 +7,7 @@ public class ShipSystemPanelComponentEntry : MonoBehaviour
     [SerializeField] private Text _componentNameText = null;
     [SerializeField] private Text _componentConditionText = null;
     [SerializeField] private RectTransform _handle = null;
+    [SerializeField] private Button _repairButton = null;
 
     private bool _hasMoved = false;
     private Canvas _canvas = null;
@@ -22,6 +23,7 @@ public class ShipSystemPanelComponentEntry : MonoBehaviour
         _canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
         _rectTransform = GetComponent<RectTransform>();
         _parentPanel = transform.parent.GetComponent<ShipSystemPanel>();
+        _repairButton.onClick.AddListener(StartComponentRepairJob);
     }
 
     private void Start()
@@ -34,7 +36,15 @@ public class ShipSystemPanelComponentEntry : MonoBehaviour
 
     private void Update()
     {
-        _componentConditionText.text = $"Condition: {Component.Condition}";
+        _componentConditionText.text = $"Condition: {(int)(Component.Condition * 10) / 10.0f}";
+        if (Component.Condition < 100.0f)
+        {
+            _repairButton.gameObject.SetActive(true);
+        }
+        else
+        {
+            _repairButton.gameObject.SetActive(false);
+        }
         if (Input.GetMouseButtonDown(0))
         {
             // Start dragging.
@@ -120,5 +130,9 @@ public class ShipSystemPanelComponentEntry : MonoBehaviour
             if (IsMouseInRect(panel.RectTransform)) return panel;
         }
         return null;
+    }
+    private void StartComponentRepairJob()
+    {
+        Job.QueueJob(new RepairComponentJob(_parentPanel.ShipSystem, Component));
     }
 }

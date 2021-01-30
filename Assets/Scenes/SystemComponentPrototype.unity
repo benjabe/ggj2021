@@ -162,9 +162,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 392de35df804b2f44bf21b5355d564d3, type: 2}
   - {fileID: 11400000, guid: 358df5c8f7663eb4593b13bfce33ea54, type: 2}
   _hasUnlimitedComponentCapacity: 0
+  _isRandomDamageTarget: 1
   _workPosition: {x: -2.16, y: 0, z: 2.1}
   _uninstallTimeMultiplier: 1
   _installTimeMultiplier: 1
+  _repairTimeMultiplier: 1
   _workingComponentCountToO2DeltaPerSecond:
   - -33
   - -0.5
@@ -325,9 +327,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 358df5c8f7663eb4593b13bfce33ea54, type: 2}
   - {fileID: 11400000, guid: 3536ad2584a31854c9c0d73a2a9ec152, type: 2}
   _hasUnlimitedComponentCapacity: 0
+  _isRandomDamageTarget: 1
   _workPosition: {x: -0.012, y: -0.024, z: -0.7}
   _uninstallTimeMultiplier: 1
   _installTimeMultiplier: 1
+  _repairTimeMultiplier: 1
   _workingComponentCountToDeflectionStrength:
   - 0
   - 0
@@ -440,7 +444,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -43, y: -209}
+  m_AnchoredPosition: {x: -41, y: 18}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1086409953
@@ -614,9 +618,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 358df5c8f7663eb4593b13bfce33ea54, type: 2}
   - {fileID: 11400000, guid: 3536ad2584a31854c9c0d73a2a9ec152, type: 2}
   _hasUnlimitedComponentCapacity: 0
+  _isRandomDamageTarget: 1
   _workPosition: {x: 2.23, y: -0.024, z: 1.196}
   _uninstallTimeMultiplier: 1
   _installTimeMultiplier: 9
+  _repairTimeMultiplier: 1
 --- !u!65 &1246181927
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1124,10 +1130,59 @@ MonoBehaviour:
   _name: Vladimir Yuri
   _compatibleComponents: []
   _hasUnlimitedComponentCapacity: 1
+  _isRandomDamageTarget: 0
   _workPosition: {x: 0, y: 0, z: 0}
   _uninstallTimeMultiplier: 0.00001
   _installTimeMultiplier: 0.00001
+  _repairTimeMultiplier: 1
   _moveSpeed: 0.5
+--- !u!1 &1420693798
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1420693799}
+  - component: {fileID: 1420693800}
+  m_Layer: 0
+  m_Name: Storyteller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1420693799
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1420693798}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1420693800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1420693798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 100f81d00532898438f04681c0c25be0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _minTimeBetweenEvents: 5.07
+  _maxTimeBetweenEvents: 8.46
+  _minShipSystemDamage: 10
+  _maxShipSystemDamage: 100
 --- !u!1 &1437812860
 GameObject:
   m_ObjectHideFlags: 0

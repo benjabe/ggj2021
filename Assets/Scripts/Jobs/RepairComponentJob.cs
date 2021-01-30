@@ -1,25 +1,26 @@
 ﻿using UnityEngine;
 
-public class InstallComponentJob : Job
+public class RepairComponentJob : Job
 {
     public ShipSystem System { get; private set; }
     public ShipSystemComponent Component { get; private set; }
 
-    public override string Name => "Install Component";
+    public override string Name => "Repair Component";
 
-    public InstallComponentJob(ShipSystem system, ShipSystemComponent component)
+    public RepairComponentJob(ShipSystem system, ShipSystemComponent component)
     {
         System = system;
         Component = component;
         _workPosition = System.WorkPosition;
         System.OnWorkPositionChanged += OnSystemWorkPositionChanged;
-        _workEfficiencyMultiplier = 1 / (system.InstallTimeMultiplier * component.InstallTimeMultiplier);
-        _requiredWork = 20.0f;
+        _workEfficiencyMultiplier = 1 / (system.RepairTimeMultiplier * component.RepairTimeMultiplier);
+        _requiredWork = 100.0f;
+        _currentWork = Component.Condition;
     }
 
     public override bool CheckPrerequisite()
     {
-        return System != null && Component != null && System.CanAddComponent(Component);
+        return System != null && Component != null && System.HasComponentOfType(Component.Data);
     }
 
     public override void ExecuteJobPostcondition(Astronaut astronaut)
@@ -34,6 +35,7 @@ public class InstallComponentJob : Job
 
     public override void ExecuteJobPerformanceEffect(Astronaut astronaut, float astronautEfficiency, float workDone)
     {
-        // Don't need anything here, methinks.
+        Component.Repair(workDone);
+        _currentWork = Component.Condition;
     }
 }

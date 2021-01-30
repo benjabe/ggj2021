@@ -10,6 +10,7 @@ public class ShipSystemComponent
     public Sprite Sprite { get => Data.Sprite; }
     public float UninstallTimeMultiplier { get => Data.UninstallTimeMultiplier; }
     public float InstallTimeMultiplier { get => Data.InstallTimeMultiplier; }
+    public float RepairTimeMultiplier { get => Data.RepairTimeMultiplier; }
 
     public ShipSystemComponent(ShipSystemComponentData data)
     {
@@ -28,6 +29,8 @@ public class ShipSystemComponent
         {
             // Broken!
             CurrentMode = Mode.Broken;
+            Condition = 0.0f;
+            Debug.Log($"{Name} broke!");
         }
         return Condition == 0.0f;
     }
@@ -42,6 +45,7 @@ public class ShipSystemComponent
         if (Condition > 1.0f)
         {
             CurrentMode = Mode.Working;
+            Debug.Log($"{Name} fixed!");
         }
         if (Condition > 100.0f)
         {

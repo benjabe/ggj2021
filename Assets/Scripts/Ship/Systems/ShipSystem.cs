@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public abstract class ShipSystem : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public abstract class ShipSystem : MonoBehaviour
     [SerializeField] private ShipSystemComponentData[] _compatibleComponents = null;
     [Tooltip("If true, the compatible components list only acts as a starting components list, and all components can be added multiple times.")]
     [SerializeField] private bool _hasUnlimitedComponentCapacity = false;
+    [Tooltip("Whether this system can randomly have its components damaged.")]
+    [SerializeField] private bool _isRandomDamageTarget = true;
     [SerializeField] private Vector3 _workPosition = Vector3.zero;
     [Tooltip("Mulitplies by the base time to uninstall components and the component's multiplier.")]
     [Min(0.00001f)]
@@ -20,6 +23,9 @@ public abstract class ShipSystem : MonoBehaviour
     [Tooltip("Mulitplies by the base time to install components and the component's multiplier.")]
     [Min(0.00001f)]
     [SerializeField] private float _installTimeMultiplier = 1.0f;
+    [Tooltip("Mulitplies by the base time to repair components and the component's multiplier.")]
+    [Min(0.00001f)]
+    [SerializeField] private float _repairTimeMultiplier = 1.0f;
 
     private List<ShipSystemComponent> _components = null;
     private GameObject _panel = null;
@@ -39,18 +45,35 @@ public abstract class ShipSystem : MonoBehaviour
     public Action<Vector3> OnWorkPositionChanged { get; set; } = null;
     public float UninstallTimeMultiplier { get => _uninstallTimeMultiplier; }
     public float InstallTimeMultiplier { get => _installTimeMultiplier; }
+    public float RepairTimeMultiplier { get => _repairTimeMultiplier; }
+    public bool IsRandomDamageTarget { get => _isRandomDamageTarget; }
 
     public abstract void UpdateAccordingToWorkingComponentCount(int count);
 
     private void Awake()
     {
         _components = _compatibleComponents.ToList().Select(c => new ShipSystemComponent(c)).ToList();
+        EndAwake();
+    }
+
+    private void Start()
+    {
+        EndStart();
     }
 
     private void Update()
     {
         UpdateAccordingToWorkingComponentCount(GetWorkingComponentCount());
     }
+
+    /// <summary>
+    /// Called at the end of base ShipSystem Awake.
+    /// </summary>
+    public abstract void EndAwake();
+    /// <summary>
+    /// Called at the end of base ShipSystem Start.
+    /// </summary>
+    public abstract void EndStart();
 
     /// <summary>
     /// Checks if the system has all required components.
@@ -118,6 +141,24 @@ public abstract class ShipSystem : MonoBehaviour
     public List<ShipSystemComponent> GetSystemComponents()
     {
         return _components;
+    }
+
+    public void DamageComponents(float damage)
+    {
+        // Distribute damage amongst components
+        float remainingDamage = damage;
+        var log = $"{Name}: Distributed {damage} damage amongst components:";
+        while (remainingDamage > 0.0f)
+        {
+            float minDamage = Mathf.Min(1.0f, remainingDamage);
+            float maxDamage = Mathf.Min(50.0f, remainingDamage);
+            float damageToComponent = Random.Range(minDamage, maxDamage);
+            var component = _components.Random();
+            component.Damage(damageToComponent);
+            remainingDamage -= damageToComponent;
+            log += $"\n{damageToComponent} dealt to {component.Name}.";
+        }
+        Debug.Log(log);
     }
 
     private void OnMouseDown()

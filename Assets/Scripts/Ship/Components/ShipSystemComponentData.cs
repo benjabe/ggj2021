@@ -11,9 +11,14 @@ public class ShipSystemComponentData : ScriptableObject
     [Tooltip("Mulitplies by the base time to install components and the systems's multiplier.")]
     [Min(0.00001f)]
     [SerializeField] private float _installTimeMultiplier = 1.0f;
+    [Tooltip("Mulitplies by the base time to repair components and the system's multiplier.")]
+    [Min(0.00001f)]
+    [SerializeField] private float _repairTimeMultiplier = 1.0f;
 
     public string Name { get => _name; }
     public Sprite Sprite { get => _sprite; }
     public float UninstallTimeMultiplier { get => _uninstallTimeMultiplier; }
     public float InstallTimeMultiplier { get => _installTimeMultiplier; }
+    public float RepairTimeMultiplier { get => _repairTimeMultiplier; }
+
 }
