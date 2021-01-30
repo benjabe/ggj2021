@@ -20,26 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="146bd00c-544e-40d6-aae8-420aa440647b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Bar.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Bar.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/ClipartKey_77939.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/ClipartKey_77939.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/UI.unity" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/UI.unity.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/EnergyBar.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/EnergyBar.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/OxygenBar.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/OxygenBar.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/WaterBar.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/WaterBar.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/water-305029_1280.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/water-305029_1280.png.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ggj2021/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ggj2021/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ggj2021/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ggj2021/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Menu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Menu.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Pause menu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Pause menu.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/UI.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/UI.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,8 +44,9 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/SetttingsMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/OxygenBar.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SleepBar.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/WaterBar.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/EnergyBar.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/WaterBar.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/FastForward.cs" />
       </list>
     </option>
   </component>
@@ -112,7 +96,9 @@
       <workItem from="1611966588978" duration="7000" />
       <workItem from="1611966623583" duration="617000" />
       <workItem from="1611998934012" duration="6237000" />
-      <workItem from="1612009580336" duration="5303000" />
+      <workItem from="1612009580336" duration="6695000" />
+      <workItem from="1612029041513" duration="3285000" />
+      <workItem from="1612035082432" duration="3423000" />
     </task>
     <servers />
   </component>
@@ -131,6 +117,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
