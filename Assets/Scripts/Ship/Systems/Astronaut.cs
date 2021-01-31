@@ -24,6 +24,7 @@ public class Astronaut : ShipSystem
         // Go to where the job is
         var dist = _currentJob.WorkPosition - transform.position;
         var dir = dist.normalized;
+        if (dist.magnitude > 0) transform.rotation = Quaternion.LookRotation(dir);
         var toMove = dir * Time.deltaTime * _moveSpeed;
         if (toMove.magnitude >= dist.magnitude)
             transform.position = _currentJob.WorkPosition;
