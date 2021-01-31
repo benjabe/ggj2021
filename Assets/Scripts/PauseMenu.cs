@@ -26,7 +26,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
-        pauseMenuUI.SetActive(false);
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("Spaceship"));
         Time.timeScale = 1f;
         GameIsPaused = false;
     }
