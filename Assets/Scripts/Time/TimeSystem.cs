@@ -69,7 +69,7 @@ public class TimeSystem : MonoBehaviour
     public override string ToString()
     {
         int day = (int)Mathf.Floor(SecondsSinceStart / 86400);
-        int hour = (int)Mathf.Floor(SecondsSinceStart / 3600);
+        int hour = (int)Mathf.Floor((SecondsSinceStart / 3600)%24);
         int minute = (int)Mathf.Floor(SecondsSinceStart / 60) % 60;
         int second = SecondsSinceStart % 60;
 
@@ -80,7 +80,7 @@ public class TimeSystem : MonoBehaviour
     public static string FormatAsDate(int time)
     {
         int day = (int)Mathf.Floor(time / 86400);
-        int hour = (int)Mathf.Floor(time / 3600);
+        int hour = (int)Mathf.Floor((time / 3600)%24);
         int minute = (int)Mathf.Floor(time / 60) % 60;
         int second = time % 60;
 

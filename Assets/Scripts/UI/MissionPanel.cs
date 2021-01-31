@@ -9,18 +9,22 @@ public class MissionPanel : MonoBehaviour
 
     private List<MissionEvent> _missions;
 
+    private void Awake()
+    {
+        MissionEventManager.OnMissionsCreated += PopulateCards;
+    }
+
     private void Start()
     {
         if (_useDebugMissionCards)
         {
             PopulateDebugMissions();
         }
-        PopulateCards();
     }
 
     private void PopulateCards()
     {
-        foreach (var mission in _missions)
+        foreach (var mission in MissionEventManager.MissionEvents.Keys)
         {
             var go = Instantiate(_missionCardPrefab, transform);
             go.GetComponent<MissionCard>().MissionEvent = mission;

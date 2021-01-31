@@ -36,7 +36,6 @@ public class ShipSystemPanelComponentEntry : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(Component);
         _componentConditionText.text = $"Condition: {(int)(Component.Condition * 10) / 10.0f}";
         if (Component.Condition < 100.0f)
         {

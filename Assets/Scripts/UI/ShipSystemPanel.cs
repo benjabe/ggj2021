@@ -20,7 +20,11 @@ public class ShipSystemPanel : MonoBehaviour
     {
         ShipSystemPanels.Add(this);
         RectTransform = GetComponent<RectTransform>();
-        _closeButton.onClick.AddListener(() => Destroy(gameObject));
+        _closeButton.onClick.AddListener(() =>
+        {
+            Destroy(gameObject);
+            SoundManager.PlaySound("DisengageSystem");
+        });
     }
 
     public void Start()
