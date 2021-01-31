@@ -1,7 +1,7 @@
 ﻿using System;
 
 /// <summary>
-/// One condition for an event (such as "Guidance Computer works"
+/// One condition for an event (such as "Guidance Computer works)"
 /// </summary>
 public class Condition
 {

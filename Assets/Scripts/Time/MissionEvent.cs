@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MissionEvent
@@ -8,6 +9,7 @@ public class MissionEvent
     //The conditions that need to be true for the event to complete
     public List<Condition> Conditions;
     public int TimeOfEvent { get; private set; }
+    public static Action<MissionEvent> OnMissionComplete;
 
     public MissionEvent(List<Condition> conditions, string name, int time)
     {
@@ -21,6 +23,7 @@ public class MissionEvent
                 if (TestIfConditionsMet())
                 {
                     Debug.Log($"Mission: {Name} Succesful!");
+                    OnMissionComplete?.Invoke(this);
                 }
                 else
                 {

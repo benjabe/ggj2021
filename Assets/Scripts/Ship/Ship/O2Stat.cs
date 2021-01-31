@@ -4,6 +4,11 @@ public class O2Stat : ShipStat
 {
     public override string Name { get => "O2"; }
 
+    public override void Initialize()
+    {
+        OnValueChanged += OxygenBar.Instance.SetOxygen;
+    }
+
     public override void Update()
     {
         if (Value <= 0.0f)

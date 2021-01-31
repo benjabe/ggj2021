@@ -26,19 +26,15 @@ public class TimeSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        List<Condition> list = new List<Condition>();
-        list.Add(new Condition(() => { return Input.GetKey(KeyCode.A); }, "HoldA"));
-        list.Add(new Condition(() => { return true; }, "IsTrue"));
-        MissionEvent missionEvent = new MissionEvent(list, "TestMission", 20);
     }
 
     // Update is called once per frame
     void Update()
     {
         elapsed += Time.deltaTime;
-        if (elapsed >= 1f)
+        while (elapsed >= 1f)
         {
-            elapsed = elapsed % 1;
+            elapsed -= 1;
             TickSecond();
         }
     }
