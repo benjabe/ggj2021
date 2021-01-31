@@ -427,7 +427,7 @@ MonoBehaviour:
   _uninstallTimeMultiplier: 1
   _installTimeMultiplier: 1
   _repairTimeMultiplier: 1
-  _moveSpeed: 1
+  _moveSpeed: 2
 --- !u!65 &157539372
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5876,7 +5876,7 @@ PrefabInstance:
     - target: {fileID: 2572208792225826889, guid: 5e8ea48a334f4a74b8b37b113eab1be5,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 15.27
+      value: -2.32
       objectReference: {fileID: 0}
     - target: {fileID: 2572208792225826889, guid: 5e8ea48a334f4a74b8b37b113eab1be5,
         type: 3}

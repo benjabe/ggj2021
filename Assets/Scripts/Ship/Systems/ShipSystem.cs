@@ -48,6 +48,30 @@ public abstract class ShipSystem : MonoBehaviour
     public float RepairTimeMultiplier { get => _repairTimeMultiplier; }
     public bool IsRandomDamageTarget { get => _isRandomDamageTarget; }
 
+    public bool AverageComponentConditionAbove(float value)
+    {
+        float sum = 0;
+        foreach(ShipSystemComponent component in _components)
+        {
+            sum += component.Condition;
+        }
+        float avgCond = sum / _components.Count();
+        return avgCond >= value;
+    }
+
+
+    public bool AllComponentConditionsAbove(float value)
+    {
+        foreach (ShipSystemComponent component in _components)
+        {
+            if (component.Condition < value)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public abstract void UpdateAccordingToWorkingComponentCount(int count);
 
     private void Awake()

@@ -26,8 +26,19 @@ public class MissionEventManager : MonoBehaviour
 
         List<Condition> asteroidList = new List<Condition>();
         //Enter lunar orbit
+            //engines 60%
+            //guidance computer 75%
         //deflect yuge asteroid
+            //asteroid deflection thingy 90%
         //Land on moon
+            //engines 40
+            //guidance computer 90%
+        //fly back to earth
+            //guidance computer 75%
+            //engines 70%
+        //land on earth
+            //engines 80
+            //guidance computer 70%
 
 
     }
