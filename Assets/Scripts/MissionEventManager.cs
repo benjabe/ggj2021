@@ -7,14 +7,15 @@ public class MissionEventManager : MonoBehaviour
 {
     public static Dictionary<MissionEvent, bool> MissionEvents = new Dictionary<MissionEvent, bool>();
     public static Action OnMissionsCreated;
-    [SerializeField]
-    private GameObject _missionEntryPrefab;
-    [SerializeField]
-    private GameObject _missionOverview;
+
+    [SerializeField] private GameObject _missionEntryPrefab;
+    [SerializeField] private GameObject _missionOverview;
+    [SerializeField] private GameObject _eventPanelPrefab = null;
 
     private void Awake()
     {
         MissionEvent.OnMissionComplete += OnMissionComplete;
+        MissionEvent.OnMissionComplete += OnMissionFailed;
     }
 
     private void Start()
@@ -94,6 +95,12 @@ public class MissionEventManager : MonoBehaviour
     {
         MissionEvents[mission] = true;
         CheckIfAllMissionsAreComplete();
+        InstantiatePanel(mission.Name + " complete!", "Good job!");
+    }
+
+    private void OnMissionFailed(MissionEvent mission)
+    {
+        InstantiatePanel(mission.Name + " failed!", "Oh no!");
     }
 
     void CreateMissionEntry(MissionEvent mission)
@@ -102,5 +109,12 @@ public class MissionEventManager : MonoBehaviour
         //var card = newEntry.GetComponent<MissionCard>();
         //card.MissionEvent = mission;
         MissionEvents.Add(mission, false);
+    }
+    private void InstantiatePanel(string eventName, string eventDescription)
+    {
+        var canvasTransform = GameObject.Find("Canvas").transform;
+        var go = Instantiate(_eventPanelPrefab, canvasTransform);
+        var panel = go.GetComponent<EventPanel>();
+        panel.SetText(eventName, eventDescription);
     }
 }

@@ -14,7 +14,7 @@ public class InstallComponentJob : Job
         _workPosition = System.WorkPosition;
         System.OnWorkPositionChanged += OnSystemWorkPositionChanged;
         _workEfficiencyMultiplier = 1 / (system.InstallTimeMultiplier * component.InstallTimeMultiplier);
-        _requiredWork = 20.0f;
+        _requiredWork = 60.0f * 10.0f;
     }
 
     public override bool CheckInstantiationPrerequisite()

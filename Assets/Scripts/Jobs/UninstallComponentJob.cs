@@ -14,7 +14,7 @@ public class UninstallComponentJob : Job
         _workPosition = System.WorkPosition;
         System.OnWorkPositionChanged += OnSystemWorkPositionChanged;
         _workEfficiencyMultiplier = 1 / (system.UninstallTimeMultiplier * component.UninstallTimeMultiplier);
-        _requiredWork = 10.0f;
+        _requiredWork = 60.0f * 5.0f;
     }
 
     public override bool CheckInstantiationPrerequisite()
@@ -27,6 +27,7 @@ public class UninstallComponentJob : Job
         // Remove the component from the system.
         System.RemoveSystemComponent(Component);
         astronaut.AddSystemComponent(Component);
+        Component.Damage(15.0f);
         System.OnWorkPositionChanged -= OnSystemWorkPositionChanged;
     }
 
