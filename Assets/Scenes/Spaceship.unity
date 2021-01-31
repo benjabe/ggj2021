@@ -3253,7 +3253,11 @@ MonoBehaviour:
     type: 3}
   _shipSystemPanelPositionTransform: {fileID: 1928335208}
   _name: Asteroid Shield
-  _compatibleComponents: []
+  _compatibleComponents:
+  - {fileID: 11400000, guid: a7e5c91f9547ac34abb5a65d09df692a, type: 2}
+  - {fileID: 11400000, guid: 392de35df804b2f44bf21b5355d564d3, type: 2}
+  - {fileID: 11400000, guid: 358df5c8f7663eb4593b13bfce33ea54, type: 2}
+  - {fileID: 11400000, guid: 3536ad2584a31854c9c0d73a2a9ec152, type: 2}
   _hasUnlimitedComponentCapacity: 0
   _isRandomDamageTarget: 1
   _workPosition: {x: 0, y: 0, z: 0}
@@ -4150,7 +4154,10 @@ MonoBehaviour:
     type: 3}
   _shipSystemPanelPositionTransform: {fileID: 135242270}
   _name: Oxygen Generator
-  _compatibleComponents: []
+  _compatibleComponents:
+  - {fileID: 11400000, guid: c0d38fba5e377324cbc69f928766bd5e, type: 2}
+  - {fileID: 11400000, guid: 392de35df804b2f44bf21b5355d564d3, type: 2}
+  - {fileID: 11400000, guid: 358df5c8f7663eb4593b13bfce33ea54, type: 2}
   _hasUnlimitedComponentCapacity: 0
   _isRandomDamageTarget: 1
   _workPosition: {x: -2, y: 0, z: 2}
@@ -4178,7 +4185,9 @@ MonoBehaviour:
     type: 3}
   _shipSystemPanelPositionTransform: {fileID: 1626726737}
   _name: Water Purifier
-  _compatibleComponents: []
+  _compatibleComponents:
+  - {fileID: 11400000, guid: 392de35df804b2f44bf21b5355d564d3, type: 2}
+  - {fileID: 11400000, guid: a7e5c91f9547ac34abb5a65d09df692a, type: 2}
   _hasUnlimitedComponentCapacity: 0
   _isRandomDamageTarget: 1
   _workPosition: {x: 0, y: 0, z: 0}
