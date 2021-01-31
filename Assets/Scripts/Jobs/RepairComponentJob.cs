@@ -2,6 +2,7 @@
 
 public class RepairComponentJob : Job
 {
+    private static float _timePerConditionPoint = 60.0f * 45.0f / 100.0f; // 45 minutes to full repair, divided by 100 for each point
     public ShipSystem System { get; private set; }
     public ShipSystemComponent Component { get; private set; }
 
@@ -13,7 +14,7 @@ public class RepairComponentJob : Job
         Component = component;
         _workPosition = System.WorkPosition;
         System.OnWorkPositionChanged += OnSystemWorkPositionChanged;
-        _workEfficiencyMultiplier = 1 / (system.RepairTimeMultiplier * component.RepairTimeMultiplier);
+        _workEfficiencyMultiplier = 1 / (system.RepairTimeMultiplier * component.RepairTimeMultiplier * _timePerConditionPoint);
         _requiredWork = 100.0f;
         _currentWork = Component.Condition;
     }

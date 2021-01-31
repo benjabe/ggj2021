@@ -10,6 +10,7 @@ public class MissionEvent
     public List<Condition> Conditions;
     public int TimeOfEvent { get; private set; }
     public static Action<MissionEvent> OnMissionComplete;
+    public static Action<MissionEvent> OnMissionFailed;
 
     public MissionEvent(List<Condition> conditions, string name, int time)
     {
@@ -29,6 +30,7 @@ public class MissionEvent
                 {
 
                     Debug.Log($"Mission: {Name} failed :(");
+                    OnMissionFailed?.Invoke(this);
                 }
 
             }

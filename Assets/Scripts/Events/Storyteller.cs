@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class Storyteller : MonoBehaviour
 {
+    [Header("References")]
+    [SerializeField] private GameObject _eventPanelPrefab = null;
     [Header("General Parameters")]
+    [Tooltip("If true there's a random event when the game starts.")]
+    [SerializeField] private bool _eventAtStart = true;
     [Tooltip("The minimum time between events (like asteroid impact, system damage, etc.) in seconds.")]
     [SerializeField, Min(0)] private float _minTimeBetweenEvents = 10.0f;
     [Tooltip("The maximum time between events (like asteroid impact, system damage, etc.) in seconds.")]
@@ -20,8 +24,19 @@ public class Storyteller : MonoBehaviour
 
     private void Awake()
     {
-        SetNextEventTime();
         shipSystems = FindObjectsOfType<ShipSystem>().ToList();
+    }
+
+    private void Start()
+    {
+        if (!_eventAtStart)
+        {
+            SetNextEventTime();
+        }
+        else
+        {
+            TriggerEvent();
+        }
     }
 
     private void Update()
@@ -62,6 +77,7 @@ public class Storyteller : MonoBehaviour
             var system = systems.Random();
             Debug.Log($"Storyteller: Damage to random ship system ({system.Name}).");
             system.DamageComponents(Random.Range(_minShipSystemDamage, _maxShipSystemDamage));
+            InstantiatePanel($"{system.Name} damaged!", $"Several components were damaged when {system.Name} got damaged. You should fix that.");
             return true;
         }
         else
@@ -69,5 +85,13 @@ public class Storyteller : MonoBehaviour
             Debug.Log($"Storyteller: Failed to find a ship system which is a damage target and has working components.");
             return false;
         }
+    }
+
+    private void InstantiatePanel(string eventName, string eventDescription)
+    {
+        var canvasTransform = GameObject.Find("Canvas").transform;
+        var go = Instantiate(_eventPanelPrefab, canvasTransform);
+        var panel = go.GetComponent<EventPanel>();
+        panel.SetText(eventName, eventDescription);
     }
 }
