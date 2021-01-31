@@ -22,6 +22,9 @@ public class MissionEventManager : MonoBehaviour
         condList.Add(condition);
 
         CreateMissionEntry(new MissionEvent(condList, "Enter Lunar Orbit", 20));
+
+
+        List<Condition> asteroidList = new List<Condition>();
         //Enter lunar orbit
         //deflect yuge asteroid
         //Land on moon

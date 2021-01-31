@@ -5,20 +5,24 @@ using UnityEngine;
 using UnityEngine.UI;
 public class OxygenBar : MonoBehaviour
 {
-    
-    
+    public static OxygenBar Instance;
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     public Slider slider;
 
-    public void SetMaxOxygen(int oxygen)
+    public void SetMaxOxygen(float oxygen)
     {
         slider.maxValue = oxygen;
         slider.value = oxygen;
     }
     
     
-    public void SetOxygen(int oxygen)
+    public void SetOxygen(float oxygen)
     {
-        slider.value = oxygen;
+        slider.value = Mathf.Clamp(oxygen, 0f, 100f);
     }
 
     

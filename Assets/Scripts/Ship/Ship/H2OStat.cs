@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class HO2Stat : ShipStat
+public class H20Stat : ShipStat
 {
     public override string Name { get => "H2O"; }
 
@@ -11,5 +11,9 @@ public class HO2Stat : ShipStat
             // Lose game if water reaches 0.
             Debug.Log($"H2O reached 0, game lost!");
         }
+    }
+    public override void Initialize()
+    {
+        OnValueChanged += WaterBar.Instance.SetWater;
     }
 }

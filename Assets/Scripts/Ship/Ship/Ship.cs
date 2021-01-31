@@ -8,9 +8,16 @@ public class Ship : MonoBehaviour
     {
         new O2Stat(),
         new AsteroidDeflectionStrengthStat(),
-        new HO2Stat()
+        new H20Stat()
     };
 
+    private void Awake()
+    {
+       foreach(ShipStat stat in _stats)
+        {
+            stat.Initialize();
+        }
+    }
     private void Update()
     {
         _stats.ForEach(stat => stat.Update());
