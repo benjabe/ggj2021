@@ -190,10 +190,12 @@ public abstract class ShipSystem : MonoBehaviour
         if (_panel == null)
         {
             InstantiatePanel();
+            SoundManager.PlaySound("EngageSystem");
         }
         else
         {
             Destroy(_panel);
+            SoundManager.PlaySound("DisengageSystem");
         }
     }
 
