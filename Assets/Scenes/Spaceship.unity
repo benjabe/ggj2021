@@ -1531,6 +1531,130 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d08bc3e9d3e14cc44a60600e9316c71b, type: 3}
+--- !u!1 &521749566
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 521749571}
+  - component: {fileID: 521749570}
+  - component: {fileID: 521749569}
+  - component: {fileID: 521749568}
+  - component: {fileID: 521749567}
+  m_Layer: 0
+  m_Name: Cylinder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &521749567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 521749566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79b7c7bf8e942f343994eee40415d29b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shipSystemPanel: {fileID: 4764697569434315919, guid: d7f78247125eddf4cbbc4f7ed5d2be73,
+    type: 3}
+  _shipSystemPanelPositionTransform: {fileID: 1626726737}
+  _name: Water Purifier
+  _compatibleComponents:
+  - {fileID: 11400000, guid: 392de35df804b2f44bf21b5355d564d3, type: 2}
+  - {fileID: 11400000, guid: a7e5c91f9547ac34abb5a65d09df692a, type: 2}
+  _hasUnlimitedComponentCapacity: 0
+  _isRandomDamageTarget: 1
+  _workPosition: {x: 0, y: 0, z: 0}
+  _uninstallTimeMultiplier: 1
+  _installTimeMultiplier: 1
+  _repairTimeMultiplier: 1
+  _workingComponentCountToH2OGainPerSecond:
+  - 0
+  - 0
+  - 0
+--- !u!136 &521749568
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 521749566}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5000001
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!23 &521749569
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 521749566}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &521749570
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 521749566}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &521749571
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 521749566}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.65, y: 2.11, z: -10.6}
+  m_LocalScale: {x: 3, y: 2, z: 3}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &581600184
 GameObject:
   m_ObjectHideFlags: 0
@@ -1839,12 +1963,12 @@ PrefabInstance:
     - target: {fileID: 2090160596345692082, guid: 73d521ae7181ef64f8e7f6005945f767,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.20459996
+      value: 0.2001
       objectReference: {fileID: 0}
     - target: {fileID: 2090160596345692082, guid: 73d521ae7181ef64f8e7f6005945f767,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.021100005
+      value: 0.0211
       objectReference: {fileID: 0}
     - target: {fileID: 2090160596345692082, guid: 73d521ae7181ef64f8e7f6005945f767,
         type: 3}
@@ -1911,10 +2035,13 @@ MonoBehaviour:
     type: 3}
   _shipSystemPanelPositionTransform: {fileID: 1308128908}
   _name: Guidance Computer
-  _compatibleComponents: []
+  _compatibleComponents:
+  - {fileID: 11400000, guid: a7e5c91f9547ac34abb5a65d09df692a, type: 2}
+  - {fileID: 11400000, guid: 358df5c8f7663eb4593b13bfce33ea54, type: 2}
+  - {fileID: 11400000, guid: 3536ad2584a31854c9c0d73a2a9ec152, type: 2}
   _hasUnlimitedComponentCapacity: 0
   _isRandomDamageTarget: 1
-  _workPosition: {x: 0, y: 0, z: 0}
+  _workPosition: {x: -7, y: 0, z: -18.5}
   _uninstallTimeMultiplier: 1
   _installTimeMultiplier: 9
   _repairTimeMultiplier: 1
@@ -2355,7 +2482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1e3c041e027cc24f852a81df64e3105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _useDebugMissionCards: 1
+  _useDebugMissionCards: 0
   _missionCardPrefab: {fileID: 1345793522241254374, guid: e05424f9330240b479d53a42d5313084,
     type: 3}
 --- !u!114 &893011345
@@ -3138,7 +3265,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 335, y: -47}
+  m_AnchoredPosition: {x: 445, y: -47}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1350666172
@@ -3765,7 +3892,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -241, y: -204}
+  m_AnchoredPosition: {x: 243.16, y: -30}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1629736588
@@ -4160,7 +4287,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 358df5c8f7663eb4593b13bfce33ea54, type: 2}
   _hasUnlimitedComponentCapacity: 0
   _isRandomDamageTarget: 1
-  _workPosition: {x: -2, y: 0, z: 2}
+  _workPosition: {x: 0, y: 0, z: 3}
   _uninstallTimeMultiplier: 1
   _installTimeMultiplier: 1
   _repairTimeMultiplier: 1
@@ -4169,35 +4296,6 @@ MonoBehaviour:
   - -0.5
   - 0
   - 5
---- !u!114 &1678994566
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1678994564}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79b7c7bf8e942f343994eee40415d29b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _shipSystemPanel: {fileID: 7114848515402757261, guid: 297a6453c4ddf7b4f87941b68e63bf23,
-    type: 3}
-  _shipSystemPanelPositionTransform: {fileID: 1626726737}
-  _name: Water Purifier
-  _compatibleComponents:
-  - {fileID: 11400000, guid: 392de35df804b2f44bf21b5355d564d3, type: 2}
-  - {fileID: 11400000, guid: a7e5c91f9547ac34abb5a65d09df692a, type: 2}
-  _hasUnlimitedComponentCapacity: 0
-  _isRandomDamageTarget: 1
-  _workPosition: {x: 0, y: 0, z: 0}
-  _uninstallTimeMultiplier: 1
-  _installTimeMultiplier: 1
-  _repairTimeMultiplier: 1
-  _workingComponentCountToH2OGainPerSecond:
-  - 0
-  - 0
-  - 0
 --- !u!65 &1678994567
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4606,27 +4704,27 @@ PrefabInstance:
     - target: {fileID: 2572208792225826889, guid: 5e8ea48a334f4a74b8b37b113eab1be5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.9955573
+      value: -7.27
       objectReference: {fileID: 0}
     - target: {fileID: 2572208792225826889, guid: 5e8ea48a334f4a74b8b37b113eab1be5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.04283619
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2572208792225826889, guid: 5e8ea48a334f4a74b8b37b113eab1be5,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2572208792225826889, guid: 5e8ea48a334f4a74b8b37b113eab1be5,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.00000022351739
+      value: 0.00000028088027
       objectReference: {fileID: 0}
     - target: {fileID: 2572208792225826889, guid: 5e8ea48a334f4a74b8b37b113eab1be5,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2572208792225826889, guid: 5e8ea48a334f4a74b8b37b113eab1be5,
         type: 3}
@@ -4636,7 +4734,7 @@ PrefabInstance:
     - target: {fileID: 2572208792225826889, guid: 5e8ea48a334f4a74b8b37b113eab1be5,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2572208792225826889, guid: 5e8ea48a334f4a74b8b37b113eab1be5,
         type: 3}
@@ -4692,7 +4790,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -41, y: 18}
+  m_AnchoredPosition: {x: -229.25, y: 18}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1938357533
