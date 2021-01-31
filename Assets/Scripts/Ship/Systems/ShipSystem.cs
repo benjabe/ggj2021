@@ -187,7 +187,6 @@ public abstract class ShipSystem : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Debug.Log($"{Name} clicked!");
         if (_panel == null)
         {
             InstantiatePanel();
