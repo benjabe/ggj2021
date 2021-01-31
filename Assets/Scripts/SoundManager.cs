@@ -24,7 +24,7 @@ public class SoundManager : MonoBehaviour
     private void Awake()
     {
         _instance = this;
-        PlaySound("TestMusic", true);
+        //PlaySound("TestMusic", true);
     }
 
     private void Update()
