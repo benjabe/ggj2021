@@ -7,7 +7,7 @@ public class MissionCard : MonoBehaviour
 
     private void Start()
     {
-        var text = $"{MissionEvent.Name} ({TimeSystem.FormatAsDate(MissionEvent.TimeOfEvent)})";
+        var text = $"<b>{MissionEvent.Name}</b> ({TimeSystem.FormatAsDate(MissionEvent.TimeOfEvent)})";
         foreach (var condition in MissionEvent.Conditions)
         {
             text += $"\n-{condition.Description}";

@@ -22,28 +22,46 @@ public class MissionEventManager : MonoBehaviour
         CreateMissionEntry(new MissionEvent(new List<Condition>()
         {
             new Condition(()=>FindObjectOfType<EngineSystem>().AllComponentConditionsAbove(85), "All Engine component  >85% condition")
-        }, "Fly towards the moon", 3600));
+        }, "Fly towards the Moon", 3600));
         //fly towards moon
         //engines 85%
         CreateMissionEntry(new MissionEvent(new List<Condition>()
         {
-            new Condition(()=>FindObjectOfType<EngineSystem>().AllComponentConditionsAbove(60), "All Engine component >85% condition"),
+            new Condition(()=>FindObjectOfType<EngineSystem>().AllComponentConditionsAbove(60), "All Engine component >60% condition"),
             new Condition(()=>FindObjectOfType<GuidanceComputer>().AverageComponentConditionAbove(75), "Average Guidance computer component condition >75%" )
-        }, "Enter lunar orbit", 86401));
+        }, "Enter lunar orbit", 86400));
         //Enter lunar orbit
-            //engines 60%
-            //guidance computer 75%
+        //engines 60%
+        //guidance computer 75%
+        CreateMissionEntry(new MissionEvent(new List<Condition>()
+        {
+            new Condition(()=>FindObjectOfType<AsteroidDeflectionSystem>().AverageComponentConditionAbove(90), "Asteroid Deflection at 90% average condition")
+        }, "Deflect incoming asteroid", 120000));
         //deflect yuge asteroid
-            //asteroid deflection thingy 90%
+        //asteroid deflection thingy 90%
+        CreateMissionEntry(new MissionEvent(new List<Condition>()
+        {
+            new Condition(()=>FindObjectOfType<EngineSystem>().AllComponentConditionsAbove(40), "All Engine component >40% condition"),
+            new Condition(()=>FindObjectOfType<GuidanceComputer>().AverageComponentConditionAbove(90), "Average Guidance computer component condition >90%" )
+        }, "Land on the Moon", 172800));
         //Land on moon
-            //engines 40
-            //guidance computer 90%
+        //engines 40
+        //guidance computer 90%
+        CreateMissionEntry(new MissionEvent(new List<Condition>()
+        {
+            new Condition(()=>FindObjectOfType<EngineSystem>().AllComponentConditionsAbove(85), "All Engine component  >85% condition")
+        }, "Fly back to the Earth", 200000));
         //fly back to earth
-            //guidance computer 75%
-            //engines 70%
+        //guidance computer 75%
+        //engines 70%
+        CreateMissionEntry(new MissionEvent(new List<Condition>()
+        {
+            new Condition(()=>FindObjectOfType<EngineSystem>().AllComponentConditionsAbove(80), "All Engine component >80% condition"),
+            new Condition(()=>FindObjectOfType<GuidanceComputer>().AverageComponentConditionAbove(70), "Average Guidance computer component condition >70%" )
+        }, "Land on the Earth", 220000));
         //land on earth
-            //engines 80
-            //guidance computer 70%
+        //engines 80
+        //guidance computer 70%
 
         OnMissionsCreated?.Invoke();
 

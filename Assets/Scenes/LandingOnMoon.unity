@@ -259,9 +259,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1633491169}
+  - {fileID: 597195556}
   - {fileID: 103047452}
   - {fileID: 1587083370}
-  - {fileID: 597195556}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -346,7 +346,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 557048997}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 7.6770005, y: 0, z: 0}
 --- !u!1001 &611902051
 PrefabInstance:
@@ -614,7 +614,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.98039216, g: 0.9728746, b: 0.88235295, a: 1}
+  m_Color: {r: 0.8962264, g: 0.8962264, b: 0.8962264, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
